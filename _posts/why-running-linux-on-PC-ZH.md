@@ -1,3 +1,8 @@
+---
+layout: post
+title: 我在个人电脑上使用 Linux
+---
+
 # 我在个人电脑上使用 Linux
 
 **原因**：我全部的学习开发都基于Linux.
