@@ -85,6 +85,24 @@ do_occured_nonblk() noexcept
 
 ```
 
-*此段代码出自本人异步运行时项目: [Koios](https://github.com/JPewterschmidt/koios).*
+*此段代码出自本人异步协程项目: [Koios](https://github.com/JPewterschmidt/koios).*
+
+## 技术特点
+
+上文提到非功能方面 io_uring 通过两个在内核和用户态之间共享的循环无锁队列实现用户内核间IO任务的双向通知。
+具体IO操作由io_uring子系统在内核空间完成，事后通知用户IO任务完成情况。
+相比用户使用传统 POSIX IO，io_uring 免去了几乎所有的IO相关系统调用，减少大量执行上下文切换。
+使用固定大小的循环无锁队列表示IO任务，实现用户和内核间异步的任务处理。
+固定大小的队列一方面免去了用户态内核态之间复杂的动态内存管理；一方面减少缓存失配减少系统性能损失。
+
+除此之外，功能方面 io_uring 还支持将多个IO操作进行链接，可使一组相互依赖的IO操作链成为一**原子**IO操作，
+并可对该原子IO操作设置超时。链上任一IO操作失败或超时，会导致当前IO链剩余部分不再执行。
+
+## 相关项目
+
+- [liburing](https://github.com/axboe/liburing): liburing provides helpers to setup and teardown io_uring instances, and also a simplified interface for applications that don't need (or want) to deal with the full kernel side implementation.
+- [libuv](https://github.com/libuv/libuv):  a multi-platform support library with a focus on asynchronous I/O.
+- [QEMU](https://github.com/qemu/qemu): A generic and open source machine & userspace emulator and virtualizer.
+- [Koios](https://github.com/JPewterschmidt/koios): A C++ async runtime library. (本人项目)
 
 *未完待续*
