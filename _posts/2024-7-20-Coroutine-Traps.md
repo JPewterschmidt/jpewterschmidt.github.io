@@ -77,6 +77,8 @@ void bar()
 
 ## 协程 Lambda 捕获陷阱
 
+> 该小节参考 [A capturing lambda can be a coroutine, but you have to save your captures while you still can](https://devblogs.microsoft.com/oldnewthing/20211103-00/?p=105870)
+
 由于 lambda 本身在首个实际的挂起点返回，并destruct(其捕获的对象也一同destruct)。
 所以，此后访问该lambda捕获的对象就会导致 use-after-free 或者 stack-use-after-return bug.
 
