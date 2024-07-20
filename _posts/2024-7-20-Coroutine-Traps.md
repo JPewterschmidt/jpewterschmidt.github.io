@@ -45,7 +45,7 @@ task<int> ifut = coro();
 
 ## 形参垂悬引用陷阱
 
-```
+```c++
 // The real coroutine
 task<int> coro(const int& iref)
 {
@@ -111,5 +111,5 @@ auto outter_lambda = [a, b, c] {
 
 不过我觉得这样有点麻烦。
 
-在 eager 的 协程 lambda 中可以在首个挂起点之前备份捕获的变量。
-不过在代码的后续维护过程中程序员仍可能以外地访问到旧的对象，导致 stack-use-after-return.
+在 eager 的协程lambda 中可以在首个挂起点之前备份捕获的变量。
+不过在代码的后续维护过程中程序员仍可能意外地访问到旧的对象，导致 stack-use-after-return.
