@@ -35,6 +35,6 @@ permalink: /about/
 
 ### Contact me
 
-Email: w2683107566 at live dot com
+Email: wang-shi-xin at outlook dot com
 
 Email: jeremypewterschmidt at gmail dot com
